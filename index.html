@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Upgrade2</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  
+  <!-- Add this in the <head> section -->
+
+<script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Player Search</title>
+
+    <link rel="stylesheet" href="styles.css">
+  
+  <link rel="stylesheet" href="styles.css">
+  
+  <link rel="stylesheet" href="styles.css">
+
+<script src="script.js"></script>
+
+<script src="script.js"></script>
+  
+
+</head>
+
+<body>
+
+    <h1>Player Search</h1>
+
+    <p id="status">Checking connectivity...</p>
+
+    <input type="text" id="searchID" placeholder="Enter Player ID">
+
+    <button onclick="searchPlayer()">Search</button>
+
+    <br><br>
+
+    <select id="teamFilter">
+
+        <option value="">Select Team</option>
+
+    </select>
+
+    <button onclick="filterByTeam()">Show Players</button>
+  
+  
+  <!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Code Scanner</title>
+
+    <script src="https://unpkg.com/html5-qrcode"></script> <!-- QR Scanner Library -->
+
+    <style>
+
+        #reader {
+
+            width: 40%;
+
+            max-width: 200px;
+
+            margin: auto;
+
+            display: none; /* Hidden initially */
+
+            border: 2px solid black;
+
+            position: relative;
+
+        }
+
+        #searchID {
+
+            width: 40%;
+
+            padding: 5px;
+
+            margin-top: 10px;
+
+            font-size: 12px;
+
+            text-align: center;
+
+        }
+
+        #scan-btn, #cancel-btn {
+
+            padding: 2px;
+
+            font-size: 12px;
+
+            background: green;
+
+            color:white;
+
+            border: 2px solid green;
+
+            cursor: pointer;
+
+            margin-top: 10px;
+
+        }
+
+        #cancel-btn {
+
+            background: red;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <button id="scan-btn" onclick="startQRScanner()">Start QR Scan</button>
+
+    <button id="cancel-btn" onclick="cancelQRScanner()">Cancel</button>
+
+    <div id="reader"></div>
+
+    <input type="text" id="searchID" placeholder="Scanned Player ID" readonly>
+
+    <script>
+
+        let qrScanner;
+
+        function startQRScanner() {
+
+            const reader = document.getElementById("reader");
+
+            const cancelBtn = document.getElementById("cancel-btn");
+
+            reader.style.display = "block"; // Show scanner box
+
+            cancelBtn.style.display = "inline-block"; // Show cancel button
+
+            qrScanner = new Html5Qrcode("reader");
+
+            qrScanner.start(
+
+                { facingMode: "environment" }, // Use back camera
+
+                { fps: 10, qrbox: 150 },
+
+                (decodedText) => {
+
+                    qrScanner.stop().then(() => { // Stop scanning after detecting
+
+                        reader.style.display = "none"; // Hide scanner box
+
+                        cancelBtn.style.display = "none"; // Hide cancel button
+
+                        document.getElementById("searchID").value = decodedText; // Fill input
+
+                        searchPlayer(); // Perform search
+
+                    });
+
+                },
+
+                (errorMessage) => {
+
+                    console.log("QR scan error:", errorMessage);
+
+                }
+
+            ).catch(err => console.error("Camera error:", err));
+
+        }
+
+        function cancelQRScanner() {
+
+            if (qrScanner) {
+
+                qrScanner.stop().then(() => {
+
+                    document.getElementById("reader").style.display = "none"; // Hide reader
+
+                    document.getElementById("cancel-btn").style.display = "none"; // Hide cancel button
+
+                    console.log("QR scanning cancelled.");
+
+                }).catch(err => console.error("Stop error:", err));
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+    <div id="playerDetails"></div>
+
+    <!-- JavaScript Files -->
+
+    <script src="indexedDB.js"></script>  <!-- Load first -->
+
+    <script src="script.js"></script>  <!-- Load second -->
+
+</body>
+
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
