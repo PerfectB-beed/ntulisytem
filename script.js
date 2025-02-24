@@ -1,6 +1,6 @@
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/1AsIKhCvWQZhtvnemBdNmr2Mq7Fd6y1SZtgxHgviGTYQ/gviz/tq?tqx=out:json";
 
-const UPDATE_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL"; // Replace with your Google Apps Script URL
+const UPDATE_URL = "https://script.google.com/macros/s/AKfycbyprFLBIDfXhKLEG_lExmkQrPaCF-GXYbpwamKL6wrrUyCzSjbenK8cJRp2obC33zjw/exec"; // Replace with your Google Apps Script URL
 
 let db;
 
@@ -208,7 +208,7 @@ function displayPlayer(player) {
 
 }
 
-// ✅ 9. Update player status in IndexedDB and Google Sheets
+// ✅ 9. Update player status
 
 function updatePlayerStatus(playerID) {
 
@@ -234,7 +234,7 @@ function updatePlayerStatus(playerID) {
 
             alert("Player status updated successfully!");
 
-            displayPlayer(player); // Refresh display
+            displayPlayer(player);
 
         }
 
@@ -282,11 +282,15 @@ function filterByTeam() {
 
 }
 
-// ✅ 12. Display team players in two columns
+// ✅ 12. Display team players with total count
 
 function displayPlayers(players) {
 
-    let output = players.length ? "<h2>Team Players</h2><div class='player-grid'>" : "<p>No players found.</p>";
+    let output = players.length ? `<h2>Team Players</h2>
+
+    <p>Total Players: <strong>${players.length}</strong></p>
+
+    <div class='player-grid'>` : "<p>No players found.</p>";
 
     players.forEach(player => {
 
@@ -341,61 +345,5 @@ window.addEventListener("offline", () => {
 function checkConnection() {
 
     document.getElementById("status").textContent = navigator.onLine ? "Online" : "Offline";
-
-}
-
-function syncStatusWithGoogleSheets(playerID, newStatus) {
-
-    if (!navigator.onLine) {
-
-        console.log("Offline mode: Status update will sync later.");
-
-        return;
-
-    }
-
-    fetch("YOUR_GOOGLE_APPS_SCRIPT_URL", { // Replace with your Apps Script URL
-
-        method: "POST",
-
-        headers: { "Content-Type": "application/json" },
-
-        body: JSON.stringify({ playerID, status: newStatus })
-
-    })
-
-    .then(response => response.json())
-
-    .then(data => console.log("Google Sheets updated:", data))
-
-    .catch(error => console.error("Error updating Google Sheets:", error));
-
-}
-
-function syncStatusWithGoogleSheets(playerID, newStatus) {
-
-    if (!navigator.onLine) {
-
-        console.log("Offline mode: Status update will sync later.");
-
-        return;
-
-    }
-
-    fetch("YOUR_GOOGLE_APPS_SCRIPT_URL", { // Replace with your Apps Script URL
-
-        method: "POST",
-
-        headers: { "Content-Type": "application/json" },
-
-        body: JSON.stringify({ playerID, status: newStatus })
-
-    })
-
-    .then(response => response.json())
-
-    .then(data => console.log("Google Sheets updated:", data))
-
-    .catch(error => console.error("Error updating Google Sheets:", error));
 
 }
